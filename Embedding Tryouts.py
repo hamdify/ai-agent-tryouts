@@ -1,24 +1,72 @@
-import openai
-import os
-from dotenv import load_dotenv
+"""Basit embedding (gömülü vektör) örneği.
 
-load_dotenv()
-api_key = os.getenv("OPENROUTER_API_KEY")
+Bu dosya, bir metnin sayısal temsilini elde etmeyi adım adım gösterir.
+Metindeki harf sayımlarına dayalı 26 boyutlu bir vektör oluşturan 
+yerel bir yöntem kullanılıyor.
+"""
 
-client = openai.OpenAI(
-    api_key=api_key,
-    base_url="https://openrouter.ai/api/v1"
-)
+import string
+from collections import Counter
 
-# Embedding alınacak metin
-metin = "Mimar Sinan İstanbul'da birçok cami tasarlamıştır."
+# 1) Embedding fonksiyonu
+def simple_embedding(text: str) -> list[int]:
+    """Metindeki harf sayılarından 26 boyutlu bir vektör oluştur."""
 
-# OpenAI GPT-3.5 modeline göre vektör üret
-embedding_response = client.embeddings.create(
-    model="openai/text-embedding-ada-002",
-    input=metin
-)
+    text = text.lower()
+    counts = Counter(ch for ch in text if ch in string.ascii_lowercase)
+    return [counts.get(ch, 0) for ch in string.ascii_lowercase]
 
-embedding_vector = embedding_response.data[0].embedding
+
+# 3) Örnek metin
+metin = """"Basit embedding (gömülü vektör) örneği.
+
+Bu dosya, bir metnin sayısal temsilini elde etmeyi adım adım gösterir.
+Artık OpenAI servisini kullanmıyoruz; metindeki harf sayımlarına dayalı
+26 boyutlu bir vektör oluşturan yerel bir yöntem tercih ediyoruz.
+"""
+
+# 1) Gerekli kütüphaneler
+import string
+from collections import Counter
+
+
+# 2) Yedek embedding fonksiyonu
+def simple_embedding(text: str) -> list[int]:
+    """Metindeki harf sayılarından 26 boyutlu bir vektör oluştur."""
+
+    text = text.lower()  # harfleri küçült
+    counts = Counter(ch for ch in text if ch in string.ascii_lowercase)
+    return [counts.get(ch, 0) for ch in string.ascii_lowercase]
+
+
+# 3) Örnek metin
+metin = """"Basit embedding (gömülü vektör) örneği.
+
+Bu dosya, bir metnin sayısal temsilini elde etmeyi adım adım gösterir.
+Artık OpenAI servisini kullanmıyoruz; metindeki harf sayımlarına dayalı
+26 boyutlu bir vektör oluşturan yerel bir yöntem tercih ediyoruz.
+"""
+
+# 1) Gerekli kütüphaneler
+import string
+from collections import Counter
+
+
+# 2) Yedek embedding fonksiyonu
+def simple_embedding(text: str) -> list[int]:
+    """Metindeki harf sayılarından 26 boyutlu bir vektör oluştur."""
+
+    text = text.lower()  # harfleri küçült
+    counts = Counter(ch for ch in text if ch in string.ascii_lowercase)
+    return [counts.get(ch, 0) for ch in string.ascii_lowercase]
+
+
+# 3) Örnek metin
+metin = "Çalma kemençem dertli, Zaten yüreğum yara, Boyle ayruluk olmaz, Hep mi bu bahtum kara?"
+
+# 4) Vektörü yerel olarak oluştur
+embedding_vector = simple_embedding(metin)
+
+# 5) Sonuçları göster
 print(f"Vektör boyutu: {len(embedding_vector)}")
 print("İlk 5 değer:", embedding_vector[:5])
