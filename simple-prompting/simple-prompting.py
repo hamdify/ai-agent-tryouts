@@ -10,8 +10,8 @@ client = openai.OpenAI(
     base_url="https://openrouter.ai/api/v1"
 )
 
-metin = "Hamdi Çakır, 1 Temmuz 2025'te Cuswa Tech'de Business Development Executive olarak çalışmaya başladı. Bugünün tarihi ise 27-07-2025." 
-soru = "Hamdi kaç günür Cuswa Tech'de çalışıyor?"
+metin = "Hamdi Çakır, 1 Temmuz 2025'te Cuswa Tech'de Business Development Executive olarak çalışmaya başladı." 
+soru = "Hamdi ne zaman Cuswa Tech'de çalışmaya başladı?"
 
 prompt = f"{metin}\nSoru: {soru}\nCevap:"
 
