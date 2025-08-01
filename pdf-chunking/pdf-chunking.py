@@ -1,11 +1,11 @@
-import os
-from dotenv import load_dotenv
-import openai
-import fitz  # PyMuPDF
+import os # dosya yollarını yönetmek
+from dotenv import load_dotenv # .env dosyasından çevresel değişkenleri yüklemek
+import openai # OpenAI API (ya da openrouter) ile etkileşim için
+import fitz  # PyMuPDF, pdf dosyalarını okumak için
 
 
 def load_pdf_chunks(pdf_path: str) -> list:
-    """Load PDF and split into text chunks per page."""
+    """PDF'yi yükler ve sayfa başına metin parçalarına böler."""
     doc = fitz.open(pdf_path)
     chunks = []
     for page in doc:
@@ -15,7 +15,7 @@ def load_pdf_chunks(pdf_path: str) -> list:
     return chunks
 
 def find_best_chunk(question: str, chunks: list) -> str:
-    """Select the chunk with most keyword overlap."""
+    """Anahtar kelime örtüşmesi en fazla olan parçayı seçip LLM'e gönderir."""
     question_words = set(question.lower().split())
     best_chunk = ""
     max_matches = -1
@@ -29,7 +29,7 @@ def find_best_chunk(question: str, chunks: list) -> str:
 
 
 def ask_llm(chunk: str, question: str) -> str:
-    """Send selected chunk and question to LLM via OpenRouter."""
+    """Seçilen parçayı ve soruyu OpenRouter üzerinden LLM'e gönderir, cevabını alır."""
     load_dotenv()
     api_key = os.getenv("OPENROUTER_API_KEY")
     client = openai.OpenAI(api_key=api_key, base_url="https://openrouter.ai/api/v1")
@@ -43,6 +43,7 @@ def ask_llm(chunk: str, question: str) -> str:
 
 
 if __name__ == "__main__":
+    """Ana program akışı."""
     print("📄 PDF içeriğini sorgulama arayüzüne hoş geldiniz.\n")
     base_path = os.path.dirname(__file__)
     pdf_path = os.path.join(base_path, input("PDF dosyasının yolu nedir? (bu denemede: assets/cihad-icin-on-hadis.pdf): ").strip())
