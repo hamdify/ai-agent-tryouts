@@ -12,15 +12,11 @@ Bu klasörde, kısa PDF belgeleri (2–3 sayfa) parçalara bölünüp (chunk) an
 - Token sınırını aşmadan belge üzerinden bilgi çıkarmak (chunk ile daha az token kullanılır)
 
 ## 🧠 Kullanılan Teknikler:
-- `fitz` (PyMuPDF) veya `pdfminer` ile PDF okuma
+- `fitz` (PyMuPDF) ile PDF okuma
 - Python list yapısı ile chunk yönetimi
 - Basit keyword matching veya embedding karşılaştırması
 
 ## 🔍 Örnek Akış:
-1. PDF metni `chunk_1`, `chunk_2`, `chunk_3` olarak ayrılır
-2. Kullanıcı sorusu: “Bu rapora göre 2023 bütçesi ne kadardı?”
+1. PDF `chunk_1`, `chunk_2`, `chunk_3` olarak ayrılır
+2. Kullanıcı belgede cevabı olan bir soru sorar.
 3. Tüm chunk'lar sırayla LLM'e verilir ya da en yakın chunk seçilip kullanılır
-
-## 💡 Not:
-- Chunk boyutları (paragraf, 200 kelime, vs.) deneyerek ayarlanır
-- Vektörel arama bu aşamada opsiyonel (RAG değil)
