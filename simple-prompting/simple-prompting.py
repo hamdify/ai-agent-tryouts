@@ -9,9 +9,9 @@ client = openai.OpenAI(
     api_key=api_key,
     base_url="https://openrouter.ai/api/v1"
 )
-
-metin = "Hamdi Çakır, 1 Temmuz 2025'te Cuswa Tech'de Business Development Executive olarak çalışmaya başladı." 
-soru = "Hamdi ne zaman Cuswa Tech'de çalışmaya başladı?"
+print("\nLLM üzerinden soru yanıtlama arayüzüne hoş geldiniz.\n")
+metin = input("İçinden soru soracağınız kısa bir metin girin.")
+soru = input("Sormak istediğiniz soruyu girin.")
 
 prompt = f"{metin}\nSoru: {soru}\nCevap:"
 
