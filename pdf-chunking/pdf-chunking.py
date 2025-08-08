@@ -46,7 +46,7 @@ if __name__ == "__main__":
     """Ana program akışı."""
     print("📄 PDF içeriğini sorgulama arayüzüne hoş geldiniz.\n")
     base_path = os.path.dirname(__file__)
-    pdf_path = os.path.join(base_path, input("PDF dosyasının yolu nedir? (bu denemede: assets/cihad-icin-on-hadis.pdf): ").strip())
+    pdf_path = os.path.join(base_path, input("PDF dosyasının yolu nedir? (bu denemede: assets/cihad-icin-kirk-hadis.pdf): ").strip())
 
 
     try:
