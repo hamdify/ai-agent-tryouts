@@ -17,7 +17,7 @@ Bu repoda, Large Language Model (LLM) temelli uygulamalar için yaptığım dene
 
 - Hedef: Küçük belgelerde manuel chunk + context aware prompting.
 
-### 3. `multi-doc-rag`
+### 3. `multi-doc-rag` (henüz geliştirilemedi)
 - 10+ sayfalık veya çoklu belge içeriği embedding ile vektör veritabanına alınır.
 - Kullanıcı sorusu embed edilir ve vektör benzerliğine göre en uygun içerik çekilir.
 - Bu içerik + soru birlikte LLM'e verilir (RAG: Retrieval-Augmented Generation).
@@ -36,11 +36,10 @@ Her alt klasör, kendine ait bir README içerir.
 - FAISS (vector similarity)
 - Python-dotenv
 - PDF parsing (PyMuPDF, pdfminer)
-- Streamlit (bazı UI denemeleri için)
 
 ---
 
-## 📌 Katkı
-Bu repo kişisel öğrenme ve deneme amaçlıdır.
+
+*** Bu repo kişisel öğrenme ve deneme amaçlıdır.
 
 ---
